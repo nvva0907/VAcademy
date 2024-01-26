@@ -1,0 +1,9 @@
+.roadmap-container {
+    display: flex;
+    overflow: auto;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    width: 100%;
+}

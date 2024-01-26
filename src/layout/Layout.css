@@ -1,0 +1,35 @@
+.header-sticky {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background-color: rgb(255, 255, 255);
+    box-shadow: 0 3px 4px rgba(0, 0, 0, 0.1);
+    font-weight: 600;
+}
+
+.menu-sticky {
+    position: sticky;
+    left: 0;
+    top: 0;
+    height: 100vh;
+    overflow-y: auto;
+    z-index: 999;
+    border-right: none;
+}
+
+.footer-sticky {
+    position: sticky;
+    bottom: 0;
+    z-index: 100;
+    height: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: end;
+    flex-direction: column;
+    gap: 5px;
+    background-color: white;
+    margin-top: auto
+}
+.test{
+    font-weight: lighter;
+}
