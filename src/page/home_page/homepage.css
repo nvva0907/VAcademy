@@ -1,0 +1,28 @@
+.c1{
+    background-color: #f3f2f2;
+    width: 100%;
+    height: 300px;
+    color: black;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 20px
+}
+.c2{
+    width: 100%;
+    height: 300px;
+    color: black;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+    gap : 20px
+}
+.c2-item{
+    background-color: #f3f2f2;
+    width: 100%;
+    height: 300px;
+    color: black;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+}

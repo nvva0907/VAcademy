@@ -24,6 +24,12 @@ export const homeMenu = [
 ]
 export const menuItems = [
     {
+        key: "HOME",
+        icon: React.createElement(HomeOutlined),
+        label: `Trang chủ`,
+        path: "/"
+    },
+    {
         key: "VCS",
         icon: React.createElement(ControlOutlined),
         label: `Hệ thống quản lý phiên bản`,

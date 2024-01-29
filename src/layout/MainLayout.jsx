@@ -1,11 +1,13 @@
 import {Link, Route, Routes} from "react-router-dom";
-import {Layout, Menu, theme, Flex} from 'antd';
-import {headerItems, homeMenu, menuItems} from '../variable/LayoutVar.jsx'
+import {Layout, Menu, theme, Flex, Tooltip, Button} from 'antd';
+import {headerItems, menuItems} from '../variable/LayoutVar.jsx'
 import {routers} from '../router/router.jsx'
 import './Layout.css'
+import {useState} from "react";
 
 const {Header, Content, Footer, Sider} = Layout;
 export default function MainLayout() {
+    const [openMenu, setOpenMenu] = useState(true);
     const {token: {colorBgContainer, borderRadiusLG}} = theme.useToken();
     return (<Flex vertical style={{minHeight: '100vh'}}>
         <Header className="header-sticky">
@@ -25,40 +27,54 @@ export default function MainLayout() {
             />
         </Header>
         <Flex horizontal>
-            <Sider width={300} className="menu-sticky">
-                <Menu
-                    mode="inline"
-                    style={{height: '100%', fontSize: '14px', borderRight: 'none', fontWeight:'600'}}
-                    items={homeMenu.map((item) => ({
-                        key: item.key,
-                        icon: item.icon,
-                        label: (<Link style={{textDecoration:'none'}} to={item.path}>{item.label}</Link>)
-                    }))}
-                    className="custom-menu"
-                />
-                <Menu
-                    mode="inline"
-                    defaultSelectedKeys={['1']}
-                    style={{height: '100%', fontSize: '14px', borderRight: 'none', fontWeight:'600'}}
-                    items={menuItems.map((item) => ({
-                        key: item.key,
-                        icon: item.icon,
-                        label: item.label,
-                        children: item.children.map((itemChild) => {
-                            return {
-                                key: itemChild.key,
-                                label: (<Link to={itemChild.path}>{itemChild.label}</Link>),
-                            };
-                        }),
-                    }))}
-                />
-            </Sider>
-            <Content style={{padding: '0 10px', overflow: 'auto', paddingLeft:'320px'}}>
+            {openMenu ?
+                <Sider width={300} className="menu-sticky">
+                    <Menu
+                        mode="inline"
+                        defaultSelectedKeys={['1']}
+                        style={{height: '100%', fontSize: '14px', borderRight: 'none', fontWeight: '600'}}
+                        items={menuItems.map((item) => ({
+                            key: item.key,
+                            icon: item.icon,
+                            label: item.label === "Trang chủ" ? (
+                                <Link to="/" onClick={() => setOpenMenu(false)}>{item.label}</Link>) : item.label,
+                            children: item?.children?.map((itemChild) => {
+                                return {
+                                    key: itemChild.key,
+                                    label: (<Link to={itemChild.path}>{itemChild.label}</Link>),
+                                };
+                            }),
+                        }))}
+                    />
+                </Sider> :
+                <Sider width={70} className="menu-sticky">
+                    <Menu
+                        mode="inline"
+                        onClick={() => setOpenMenu(true)}
+                        defaultSelectedKeys={['1']}
+                        style={{height: '100%', fontSize: '14px', borderRight: 'none', fontWeight: '600'}}
+                    >
+                        {menuItems.map((item) => {
+                            return (
+                                <Flex key={item.key}>
+                                    <Tooltip placement="rightTop" title={item.label}>
+                                        <Menu.Item key={item.key} icon={item.icon} style={{paddingLeft:'25px', marginBottom:'0px'}}></Menu.Item>
+                                    </Tooltip>
+                                </Flex>
+                            )
+                        })}
+                    </Menu>
+                </Sider>
+            }
+            <Content style={{padding: '0 10px', overflow: 'auto', paddingLeft: openMenu ? '320px' : '70px'}}>
                 <Layout style={{padding: '24px 0', background: colorBgContainer, borderRadius: borderRadiusLG}}>
                     <Content>
                         <Routes>
-                            {routers.map(item =>
-                            (<Route path={item.path} element={item.component}></Route>))}
+                            {routers?.map((item, index) => {
+                                return (
+                                    <Route key={index} path={item.path} element={item.component}></Route>
+                                )
+                            })}
                         </Routes>
                     </Content>
                 </Layout>
