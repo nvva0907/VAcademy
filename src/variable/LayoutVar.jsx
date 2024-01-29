@@ -1,15 +1,12 @@
 import React from "react";
 import {
-    GitlabOutlined,
     HomeOutlined,
     ControlOutlined,
     CodeSandboxOutlined,
     CodepenCircleOutlined,
-    UserOutlined,
     DatabaseOutlined,
     WindowsOutlined
 } from "@ant-design/icons";
-import git from "../assets/git.svg";
 
 export const headerItems = [
     {id: 1, text: "Home"},
@@ -17,13 +14,15 @@ export const headerItems = [
     {id: 3, text: "Blog"},
     {id: 4, text: "Liên hệ"},
 ]
-export const menuItems = [
+export const homeMenu = [
     {
         key: "HOME",
         icon: React.createElement(HomeOutlined),
         label: `Trang chủ`,
-        children: []
-    },
+        path: "/"
+    }
+]
+export const menuItems = [
     {
         key: "VCS",
         icon: React.createElement(ControlOutlined),

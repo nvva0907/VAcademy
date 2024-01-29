@@ -8,13 +8,12 @@
 }
 
 .menu-sticky {
-    position: sticky;
+    position: fixed;
+    top: 64px; /* Điều chỉnh giá trị này tùy thuộc vào chiều cao của header của bạn */
     left: 0;
-    top: 0;
-    height: 100vh;
-    overflow-y: auto;
-    z-index: 999;
-    border-right: none;
+    height: calc(100% - 64px); /* Điều chỉnh chiều cao menu theo ý muốn của bạn */
+    overflow-y: auto; /* Cho phép cuộn nếu nội dung vượt quá kích thước menu */
+    z-index: 1; /* Đảm bảo menu hiển thị trên các thành phần khác */
 }
 
 .footer-sticky {
@@ -30,6 +29,8 @@
     background-color: white;
     margin-top: auto
 }
-.test{
-    font-weight: lighter;
+.custom-menu .ant-menu-item-selected,
+.custom-menu .ant-menu-item-active {
+    background-color: transparent !important;
+    color: inherit !important;
 }

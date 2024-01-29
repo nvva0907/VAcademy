@@ -1,7 +1,6 @@
-import React from 'react';
 import {Link, Route, Routes} from "react-router-dom";
 import {Layout, Menu, theme, Flex} from 'antd';
-import {headerItems, menuItems} from '../variable/LayoutVar.jsx'
+import {headerItems, homeMenu, menuItems} from '../variable/LayoutVar.jsx'
 import {routers} from '../router/router.jsx'
 import './Layout.css'
 
@@ -13,7 +12,7 @@ export default function MainLayout() {
             <Menu
                 theme="light"
                 mode="horizontal"
-                items={headerItems.map((item, index) => ({
+                items={headerItems.map((item) => ({
                     key: item.id, label: item.text
                 }))}
                 style={{
@@ -26,16 +25,26 @@ export default function MainLayout() {
             />
         </Header>
         <Flex horizontal>
-            <Sider width={300}>
+            <Sider width={300} className="menu-sticky">
+                <Menu
+                    mode="inline"
+                    style={{height: '100%', fontSize: '14px', borderRight: 'none', fontWeight:'600'}}
+                    items={homeMenu.map((item) => ({
+                        key: item.key,
+                        icon: item.icon,
+                        label: (<Link style={{textDecoration:'none'}} to={item.path}>{item.label}</Link>)
+                    }))}
+                    className="custom-menu"
+                />
                 <Menu
                     mode="inline"
                     defaultSelectedKeys={['1']}
-                    style={{height: '100%', fontSize: '12px', borderRight: 'none', fontWeight:'600'}}
-                    items={menuItems.map((item, index) => ({
+                    style={{height: '100%', fontSize: '14px', borderRight: 'none', fontWeight:'600'}}
+                    items={menuItems.map((item) => ({
                         key: item.key,
                         icon: item.icon,
                         label: item.label,
-                        children: item.children.map((itemChild, index) => {
+                        children: item.children.map((itemChild) => {
                             return {
                                 key: itemChild.key,
                                 label: (<Link to={itemChild.path}>{itemChild.label}</Link>),
@@ -44,11 +53,12 @@ export default function MainLayout() {
                     }))}
                 />
             </Sider>
-            <Content style={{padding: '0 10px', overflow: 'auto'}}>
+            <Content style={{padding: '0 10px', overflow: 'auto', paddingLeft:'320px'}}>
                 <Layout style={{padding: '24px 0', background: colorBgContainer, borderRadius: borderRadiusLG}}>
                     <Content>
                         <Routes>
-                            {routers.map(item => (<Route path={item.path} element={item.component}></Route>))}
+                            {routers.map(item =>
+                            (<Route path={item.path} element={item.component}></Route>))}
                         </Routes>
                     </Content>
                 </Layout>
