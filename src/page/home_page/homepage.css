@@ -1,5 +1,6 @@
+
 .c1{
-    background-color: #f3f2f2;
+    background-color: #f9f9f9;
     width: 100%;
     height: 300px;
     color: black;
@@ -7,6 +8,18 @@
     align-items: center;
     flex-direction: column;
     gap: 20px
+}
+.title{
+    /*background-color: #f9f9f9;*/
+    width: 100%;
+    height: 50px;
+    color: black;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 20px;
+    font-size: 30px ;
+    font-weight: 300
 }
 .c2{
     width: 100%;
@@ -18,11 +31,12 @@
     gap : 20px
 }
 .c2-item{
-    background-color: #f3f2f2;
+    /*background-color: #f9f9f9;*/
     width: 100%;
     height: 300px;
     color: black;
-    justify-content: center;
+    justify-content: space-between;
+    padding: 50px 0 50px 0;
     align-items: center;
-    flex-direction: row;
+    flex-direction: column;
 }
